@@ -12,6 +12,9 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto> {
@@ -29,12 +32,21 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto> {
         }
 
         TextView tvUsername = (TextView) convertView.findViewById(R.id.tvUsername);
+        TextView tvLocation = (TextView) convertView.findViewById(R.id.tvLocation);
         TextView tvLikeCount = (TextView) convertView.findViewById(R.id.tvLikeCount);
         TextView tvCaption = (TextView) convertView.findViewById(R.id.tvCaption);
         ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.ivPhoto);
         ImageView ivAvatar = (ImageView) convertView.findViewById(R.id.ivAvatar);
 
         tvUsername.setText(photo.username);
+        if (!photo.location.equalsIgnoreCase("null")) {
+            try {
+                JSONObject location = new JSONObject(photo.location);
+                tvLocation.setText(location.getString("name"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
         tvLikeCount.setText(Integer.toString(photo.likeCount));
         tvCaption.setText(photo.caption);
         ivPhoto.setImageResource(0);

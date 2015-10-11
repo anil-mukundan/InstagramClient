@@ -1,6 +1,7 @@
 package com.mukundan.www.instagramclient;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,9 +21,9 @@ import cz.msebera.android.httpclient.Header;
 public class PhotosActivity extends ActionBarActivity {
 
     private static final String CLIENT_ID = "d17c51b8e8144d1d9d1f4bef72f8e4d4";
-
     private ArrayList<InstagramPhoto> photos;
-    InstagramPhotoAdapter aPhotos;
+    private InstagramPhotoAdapter aPhotos;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,22 @@ public class PhotosActivity extends ActionBarActivity {
         aPhotos = new InstagramPhotoAdapter(this, photos);
         ListView lvPhotos = (ListView) findViewById(R.id.lvPhotos);
         lvPhotos.setAdapter(aPhotos);
-        fetchPopularPhotos();
+        fetchPopularPhotos(false);
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchPopularPhotos(true);
+            }
+        });
     }
 
-    public void fetchPopularPhotos() {
+    public void fetchPopularPhotos(final Boolean refresh) {
         String url = "https://api.instagram.com/v1/media/popular?client_id=" + this.CLIENT_ID;
         AsyncHttpClient httpClient = new AsyncHttpClient();
         httpClient.get(url, null, new JsonHttpResponseHandler() {
@@ -54,7 +67,8 @@ public class PhotosActivity extends ActionBarActivity {
                                 photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getString("url"),
                                 photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height"),
                                 photoJSON.getJSONObject("likes").getInt("count"),
-                                photoJSON.getJSONObject("user").getString("profile_picture")
+                                photoJSON.getJSONObject("user").getString("profile_picture"),
+                                photoJSON.getString("location")
                         );
                         photos.add(photo);
                     }
@@ -62,6 +76,9 @@ public class PhotosActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
                 aPhotos.notifyDataSetChanged();
+                if (refresh) {
+                    swipeContainer.setRefreshing(false);
+                }
             }
 
             @Override
