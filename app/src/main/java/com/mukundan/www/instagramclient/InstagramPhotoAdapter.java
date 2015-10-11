@@ -1,7 +1,6 @@
 package com.mukundan.www.instagramclient;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +42,10 @@ public class InstagramPhotoAdapter extends ArrayAdapter<InstagramPhoto> {
 
         ivAvatar.setImageResource(0);
         Transformation transformation = new RoundedTransformationBuilder()
-                .borderColor(Color.BLACK)
-                .borderWidthDp(3)
-                .cornerRadiusDp(30)
+                .cornerRadiusDp(50)
                 .oval(false)
                 .build();
-        //Picasso.with(getContext()).load(photo.avatar).fit().transform(transformation).into(ivAvatar);
-        Picasso.with(getContext()).load(photo.avatar).into(ivAvatar);
+        Picasso.with(getContext()).load(photo.avatar).transform(transformation).into(ivAvatar);
 
         return convertView;
     }

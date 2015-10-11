@@ -1,68 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/ivAvatar"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/llInner"
+        android:orientation="horizontal"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/ivAvatar"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvUsername"
+            android:text="anil.mukundan"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"/>
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ivPhoto"
-        android:layout_below="@+id/ivAvatar"
+        android:layout_below="@+id/llInner"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher" />
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:id="@+id/ivHeart"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/llInner2"
+        android:orientation="horizontal"
         android:layout_below="@+id/ivPhoto"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@mipmap/ic_launcher"
-        android:layout_alignRight="@+id/ivAvatar"
-        android:layout_alignEnd="@+id/ivAvatar"
-        android:adjustViewBounds="false" />
+        android:layout_marginTop="5dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvUsername"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ivAvatar"
-        android:layout_toEndOf="@+id/ivAvatar"
-        android:text="anil.mukundan" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/ivHeart"
+            android:src="@mipmap/heart"
+            android:adjustViewBounds="false"
+            android:layout_gravity="center"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvLikeCount"
-        android:layout_below="@+id/ivPhoto"
-        android:layout_toRightOf="@+id/ivHeart"
-        android:layout_toEndOf="@+id/ivHeart"
-        android:text="555" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvLikeCount"
+            android:text="555"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=" likes"
-        android:id="@+id/tvLikesText"
-        android:layout_below="@+id/ivPhoto"
-        android:layout_toRightOf="@+id/tvLikeCount"
-        android:layout_toEndOf="@+id/tvLikeCount" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="likes"
+            android:id="@+id/tvLikesText"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -70,9 +87,8 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/tvCaption"
-        android:layout_below="@+id/tvLikeCount"
+        android:layout_below="@+id/llInner2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
         android:text="The caption of the photo goes here"
         android:maxLines="3"
         android:ellipsize="end" />
