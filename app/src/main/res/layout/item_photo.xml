@@ -13,7 +13,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:weightSum="1">
 
         <ImageView
             android:layout_width="30dp"
@@ -24,21 +25,52 @@
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"/>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvUsername"
-            android:text="anil.mukundan"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15dp"/>
+            android:id="@+id/llInner3"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvUsername"
+                android:text="anil.mukundan"
+                android:textColor="#08088A"
+                android:textSize="@dimen/font_size_small"
+                android:textStyle="bold"
+                android:layout_gravity="left"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#2E9AFE"
+                android:textSize="@dimen/font_size_small"
+                android:id="@+id/tvLocation"
+                android:text=""
+                android:layout_gravity="left"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvLocation"
-            android:text=""
+            android:textSize="@dimen/font_size_small"
+            android:id="@+id/tvWeeks"
             android:layout_gravity="center"
-            android:layout_marginLeft="15dp"/>
+            android:layout_weight="12.90"
+            android:layout_marginRight="10dp"/>
 
     </LinearLayout>
 
@@ -60,11 +92,12 @@
         android:orientation="horizontal"
         android:layout_below="@+id/ivPhoto"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="@dimen/font_size_small"
+            android:layout_height="@dimen/font_size_small"
             android:id="@+id/ivHeart"
             android:src="@mipmap/heart"
             android:adjustViewBounds="false"
@@ -74,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvLikeCount"
-            android:text="555"
+            android:textSize="@dimen/font_size_small"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"/>
 
@@ -82,6 +115,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="likes"
+            android:textSize="@dimen/font_size_small"
             android:id="@+id/tvLikesText"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"/>
@@ -97,8 +131,10 @@
         android:id="@+id/tvCaption"
         android:layout_below="@+id/llInner2"
         android:layout_alignParentLeft="true"
-        android:text="The caption of the photo goes here"
+        android:textSize="@dimen/font_size_small"
         android:maxLines="3"
-        android:ellipsize="end" />
+        android:ellipsize="end"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
 
 </RelativeLayout>
