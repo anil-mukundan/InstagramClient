@@ -25,13 +25,8 @@ public class InstagramPhoto {
         this.imageHeight = imageHeight;
         this.likeCount = likeCount;
         this.avatar = avatar;
-        this.location = "the LEX";
-
-        long created_time = Long.parseLong(timestamp);
-        Date now = new Date();
-        this.weeks = (now.getTime() - created_time)/((1000 * 60 * 60 * 24 * 7)) + "w";
-
-
+        this.weeks = (new Date().getTime() - Long.parseLong(timestamp))/((1000 * 60 * 60 * 24 * 7)) + "w";
+        this.location = null;
         if (!location.equalsIgnoreCase("null")) {
             try {
                 JSONObject locJSON = new JSONObject(location);

@@ -66,14 +66,12 @@ public class PhotosActivity extends ActionBarActivity {
                                 photoJSON.getJSONObject("user").getString("username"),
                                 photoJSON.getJSONObject("user").getString("full_name"),
                                 photoJSON.getJSONObject("caption").getString("text"),
-                                //"This is the caption",
                                 photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getString("url"),
                                 photoJSON.getJSONObject("images").getJSONObject("standard_resolution").getInt("height"),
                                 photoJSON.getJSONObject("likes").getInt("count"),
                                 photoJSON.getJSONObject("user").getString("profile_picture"),
                                 photoJSON.getString("location"),
                                 photoJSON.getJSONObject("caption").getString("created_time")
-                                //"23"
                         );
                         photos.add(photo);
                     }
